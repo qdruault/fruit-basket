@@ -13,6 +13,10 @@ class GameScene extends Phaser.Scene {
     this.fruits = this.add.group();
 
     this.count = 0;
+
+    this.basket = new Basket(this);
+    this.basket.depth = 99;
+    this.add.existing(this.basket);
   }
 
   update() {
@@ -22,7 +26,7 @@ class GameScene extends Phaser.Scene {
     }
 
     this.count++;
-    if (this.count == 80)
+    if (this.count == 100)
     {
       this.createFruit();
       this.count = 0;
@@ -33,6 +37,8 @@ class GameScene extends Phaser.Scene {
       fruit.update();
     }
 
+    this.basket.update();
+
   }
 
   quitGame() {
@@ -40,11 +46,11 @@ class GameScene extends Phaser.Scene {
   }
 
   createFruit(){
-    var fruit = new Fruit(this, this.generateRandomPosition(config.width), 0);
+    var fruit = new Fruit(this, this.generateRandomPosition(), 0);
     this.add.existing(fruit);
   }
 
-  generateRandomPosition(referenceValue) {
-    return Phaser.Math.Between(10, referenceValue - 10);
+  generateRandomPosition() {
+    return 60 * Phaser.Math.Between(1, (config.width - 60)/60);
   }
 }

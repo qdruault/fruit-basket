@@ -5,7 +5,7 @@ class StartScene extends Phaser.Scene {
 
   preload() {
     this.load.image("background", "ressources/images/forest.png");
-    this.load.image("player", "ressources/images/basket.png");
+    this.load.image("basket", "ressources/images/basket.png");
     this.load.image("appleSprite", "ressources/images/apple.png");
     this.load.image("pearSprite", "ressources/images/pear.png");
   }
