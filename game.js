@@ -1,8 +1,12 @@
-var config = {
-  width: 800,
-  height: 800,
+const config = {
+  width: 640,
+  height: 480,
   backgroundColor: 0x009900,
-  scene: [StartScene, GameScene]
+  scene: [StartScene, GameScene],
+  type: Phaser.AUTO,
+  physics: {
+    default: 'arcade'
+  }
 }
 
 window.onload = function(){
