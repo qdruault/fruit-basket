@@ -1,4 +1,4 @@
-const fruitsData = {
+const FRUITS_DATA = {
   appleSpeed: 1,
   appleTextureName: "appleSprite",
   applePoints: 1,
@@ -14,19 +14,20 @@ class Fruit extends Phaser.GameObjects.Sprite{
 
     this.setPosition(x, y);
 
+    // Create a random fruit.
     var random = Phaser.Math.Between(1,2);
     switch (random) {
       case 1:
-        this.Speed = fruitsData.appleSpeed;
-        this.Points = fruitsData.applePoints;
-        this.setTexture(fruitsData.appleTextureName);
-        this.setScale(0.4);
-        break;
+        // Apple.
+        this.Speed = FRUITS_DATA.appleSpeed;
+        this.Points = FRUITS_DATA.applePoints;
+        this.setTexture(FRUITS_DATA.appleTextureName);
+      break;
+      // Pear.
       case 2:
-        this.Speed = fruitsData.pearSpeed;
-        this.Points = fruitsData.pearPoints;
-        this.setTexture(fruitsData.pearTextureName);
-        this.setScale(0.4);
+        this.Speed = FRUITS_DATA.pearSpeed;
+        this.Points = FRUITS_DATA.pearPoints;
+        this.setTexture(FRUITS_DATA.pearTextureName);
         break;
       default:
         break;

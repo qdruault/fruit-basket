@@ -6,7 +6,7 @@ const config = {
   type: Phaser.AUTO,
   physics: {
     default: 'arcade'
-  }
+  },
 }
 
 window.onload = function(){
