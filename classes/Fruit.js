@@ -19,14 +19,14 @@ class Fruit extends Phaser.GameObjects.Sprite{
     switch (random) {
       case 1:
         // Apple.
-        this.Speed = FRUITS_DATA.appleSpeed;
-        this.Points = FRUITS_DATA.applePoints;
+        this.speed = FRUITS_DATA.appleSpeed;
+        this.points = FRUITS_DATA.applePoints;
         this.setTexture(FRUITS_DATA.appleTextureName);
       break;
       // Pear.
       case 2:
-        this.Speed = FRUITS_DATA.pearSpeed;
-        this.Points = FRUITS_DATA.pearPoints;
+        this.speed = FRUITS_DATA.pearSpeed;
+        this.points = FRUITS_DATA.pearPoints;
         this.setTexture(FRUITS_DATA.pearTextureName);
         break;
       default:
@@ -35,7 +35,7 @@ class Fruit extends Phaser.GameObjects.Sprite{
   }
 
   update() {
-    this.y += this.Speed;
+    this.y += this.speed;
 
     if (this.y > 480){
       this.destroy();

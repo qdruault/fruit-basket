@@ -1,4 +1,6 @@
 const FRUIT_DROP = 80;
+var scoreValue = 0;
+var scoreText;
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -9,8 +11,6 @@ class GameScene extends Phaser.Scene {
     // Background image
     this.background = this.add.image(0,0,"background");
     this.background.setOrigin(0,0);
-    // Score display.
-    this.add.text(20, 20, "SCORE", {font: "25px Consolas", fill: "#FFD133", stroke: "black", strokeThickness : 6});
 
     // The fruits.
     this.fruits = this.add.group();
@@ -20,6 +20,14 @@ class GameScene extends Phaser.Scene {
     // Make it appear in front of everything.
     this.basket.depth = 99;
     this.add.existing(this.basket);
+
+    // Score.
+    scoreText = this.add.text(20, 20, "SCORE: " + scoreValue, {
+      font: "25px Consolas",
+      fill: "#FFD133",
+      stroke: "black",
+      strokeThickness : 6
+    });
   }
 
   update() {
@@ -44,6 +52,9 @@ class GameScene extends Phaser.Scene {
 
     // Update the basket.
     this.basket.update();
+
+    // Fruit in basket?
+    this.pickFruit();
   }
 
   quitGame() {
@@ -57,5 +68,24 @@ class GameScene extends Phaser.Scene {
 
   generateRandomPosition() {
     return 70 * Phaser.Math.Between(1, 8);
+  }
+
+  increaseScore(fruitValue) {
+    // Update the score.
+    scoreValue += fruitValue;
+    scoreText.setText("SCORE: " + scoreValue);
+  }
+
+  pickFruit() {
+    for(var i = 0; i < this.fruits.getChildren().length; i++){
+      var fruit = this.fruits.getChildren()[i];
+      if (this.basket.x -35 <= fruit.x && fruit.x < this.basket.x + 35
+          && fruit.y > 410) {
+        // Score.
+        this.increaseScore(fruit.points);
+        // Remove the fruit
+        fruit.destroy();
+      }
+    }
   }
 }
